@@ -1,0 +1,80 @@
+@use '../../partials/variables' as *;
+@use '../../partials/typography' as *;
+@use '../../partials/mixins' as *;
+
+.header {
+  padding: $padding;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // font-family: "Avenir Demi";
+	// font-weight: 400;
+
+  &__logo-link {
+    margin: 0 auto;
+  }
+
+  &__logo-img {
+    width: 110%;
+  }
+
+  &__form {
+    width: 100%;
+    margin: $margin/2 0;
+
+    &__input {
+      background: url("../../assets/images/Icon-search.svg") no-repeat left
+        center;
+      background-position: $padding;
+      border: 2px solid $silver-light;
+      background-color: $secondary-white;
+      height: 48px;
+      border-radius: 4px;
+      width: 100%;
+      // color: red;
+      padding: 0 $padding * 2.5;
+
+      &:focus {
+        outline: none;
+        border: 2px solid #0095ff;
+      }
+    }
+  }
+
+  &__upload {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    &__btn {
+			// display: flex;
+			// align-items: center;
+			// justify-content: center;
+			font-family: "Avenir Demi";
+      background-color: $light-blue;
+      border: none;
+      padding: 0 $padding * 4;
+      border-radius: 4px;
+      color: white;
+      font-size: 15px;
+
+      &:hover {
+        background-color: $dark-blue;
+      }
+
+      &__icon {
+        margin: 0 $margin/2;
+				width: 18px;
+				margin-bottom: -2px;
+      }
+    }
+
+    &__img {
+      background: url("../../assets/images/Mohan-muruge.jpg") center/cover
+        no-repeat;
+      min-width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+  }
+}
