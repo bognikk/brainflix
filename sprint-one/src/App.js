@@ -33,7 +33,7 @@ class App extends React.Component {
           <Description selectedVideo={this.state.selectedVideo} />
           <Comments selectedVideo={this.state.selectedVideo} />
         </SelectedVideo>
-        <NextVideo></NextVideo>
+        <NextVideo videos={this.state.Videos}></NextVideo>
       </div>
     );
   }
