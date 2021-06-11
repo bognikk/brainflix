@@ -1,29 +1,42 @@
-// import logo from './logo.svg';
-import './App.scss';
-import Header from './components/Header/Header';
+import React from "react";
 
+import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
+import Description from "./components/Description/Description";
+import Comments from "./components/Comments/Comments";
+import SelectedVideo from "./components/SelectedVideo/SelectedVideo";
+import NextVideo from "./components/NextVideo/NextVideo";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
+import VideoDetails from "./data/video-details.json";
+import Videos from "./data/videos.json";
 
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
-  );
+import "./App.scss";
+
+class App extends React.Component {
+  state = {
+    Videos,
+    VideoDetails,
+    selectedVideo: VideoDetails[0],
+  };
+
+  
+  render() {
+    // console.log(this.state.selectedVideo);
+
+    // log();
+    // console.log(this.state.VideoDetails.forEach((video) => console.log(video)));
+    return (
+      <div className="App">
+        <Header />
+        <SelectedVideo className="selectedVideo">
+          <Hero selectedVideoImg={this.state.selectedVideo.image} />
+          <Description selectedVideo={this.state.selectedVideo} />
+          <Comments selectedVideo={this.state.selectedVideo} />
+        </SelectedVideo>
+        <NextVideo></NextVideo>
+      </div>
+    );
+  }
 }
 
 export default App;

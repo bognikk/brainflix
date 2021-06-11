@@ -1,0 +1,60 @@
+@use '../../partials/variables' as *;
+@use '../../partials/typography' as *;
+@use '../../partials/mixins' as *;
+
+.desc {
+  padding: $padding;
+  color: $primary-black;
+
+  &__main-title {
+    @include main-heading-mobile;
+    // color: $primary-black;
+    font-family: "Avenir Bold";
+    margin-bottom: $margin;
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: $margin * 1.5;
+  }
+
+  &__credits {
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: $margin/2;
+  }
+
+  &__date {
+    color: $silver-dark;
+  }
+
+  &__views {
+    font-size: 15px;
+  }
+
+  &__likes {
+    font-size: 15px;
+  }
+
+  &__icon {
+    margin-right: $margin/2;
+  }
+
+  &__wrapper {
+    display: flex;
+
+    &:nth-child(2) {
+      margin-left: $margin*2;
+    }
+  }
+
+  &__lower {
+    border-top: 2px solid $silver-light;
+    padding-top: $padding;
+    &__text {
+      @include labels-mobile;
+    }
+  }
+}

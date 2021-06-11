@@ -7,20 +7,48 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  // font-family: "Avenir Demi";
-	// font-weight: 400;
+
+  @include tablet {
+    align-items: center;
+    justify-content: space-between;
+    padding: $padding $padding*2;
+  }
+
+  @include desktop {
+    padding: $padding $padding*8;
+  }
 
   &__logo-link {
     margin: 0 auto;
+
+    @include tablet {
+      margin: 0;
+    }
   }
 
   &__logo-img {
     width: 110%;
   }
 
+  &__right-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include tablet {
+      width: 70%;
+      justify-content: flex-end;
+    }
+  }
+
   &__form {
     width: 100%;
     margin: $margin/2 0;
+
+    @include tablet {
+      width: 50%;
+      margin: 0;
+    }
 
     &__input {
       background: url("../../assets/images/Icon-search.svg") no-repeat left
@@ -31,7 +59,6 @@
       height: 48px;
       border-radius: 4px;
       width: 100%;
-      // color: red;
       padding: 0 $padding * 2.5;
 
       &:focus {
@@ -46,26 +73,36 @@
     width: 100%;
     justify-content: space-between;
 
+    @include tablet {
+      width: auto;
+      margin-left: $margin;
+      justify-content: flex-end;
+    }
+
     &__btn {
-			// display: flex;
-			// align-items: center;
-			// justify-content: center;
-			font-family: "Avenir Demi";
+      font-family: "Avenir Demi";
       background-color: $light-blue;
       border: none;
-      padding: 0 $padding * 4;
+      height: 48px;
+      // padding: 0 $padding/2;
       border-radius: 4px;
       color: white;
       font-size: 15px;
+      width: 100%;
+
+      @include tablet {
+        padding: 0 $padding;
+        width: auto;
+      }
 
       &:hover {
         background-color: $dark-blue;
       }
 
       &__icon {
-        margin: 0 $margin/2;
-				width: 18px;
-				margin-bottom: -2px;
+        margin-right: $margin/2;
+        width: 18px;
+        margin-bottom: -2px;
       }
     }
 
@@ -75,6 +112,7 @@
       min-width: 48px;
       height: 48px;
       border-radius: 50%;
+      margin-left: $margin;
     }
   }
 }

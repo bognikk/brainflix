@@ -1,0 +1,130 @@
+@use '../../../partials/variables' as *;
+@use '../../../partials/typography' as *;
+@use '../../../partials/mixins' as *;
+
+.comments-form {
+  padding: $padding;
+
+  &__heading {
+    @include small-heading;
+    // font-size: 16px;
+  }
+}
+.form-container {
+  display: flex;
+  padding: $padding * 1.5 0 $padding;
+  position: relative;
+
+  @include tablet {
+    padding: $padding * 2 $padding * 4 $padding;
+  }
+
+  @include desktop {
+    padding: $padding * 2 $padding * 16.5 $padding;
+  }
+}
+
+.img-container {
+  background: url("../../../assets/images/Mohan-muruge.jpg") center/cover no-repeat;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: $margin $margin 0 0;
+
+  @include tablet {
+    min-width: 48px;
+    height: 48px;
+  }
+}
+
+.form {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__label {
+    color: $silver-dark;
+    font-size: 13px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+
+    @include tablet {
+      // @include body-text;
+      font-weight: 600;
+    }
+  }
+
+  &__input {
+    height: 36px;
+    border-radius: 4px;
+    padding: 12px;
+    border: 2px solid $primary-black;
+    background-color: white;
+    margin-bottom: $margin;
+    color: black;
+
+    &:focus {
+      outline: none;
+      border: 2px solid black;
+    }
+
+    &::placeholder {
+      color: black;
+      opacity: 1;
+    }
+
+    @include tablet {
+      // @include body-text;
+      height: 48px;
+    }
+  }
+
+  &__textarea {
+    min-height: 36px;
+    border-radius: 4px;
+    padding: $padding;
+    border: 3px solid $silver-light;
+    background-color: $secondary-white;
+    margin-bottom: $margin;
+    resize: none;
+    color: black;
+    height: 100px;
+
+    &:focus {
+      outline: none;
+      border: 2px solid black;
+    }
+
+    &::placeholder {
+      color: black;
+      opacity: 1;
+      text-align: left;
+      font-size: 14px;
+    }
+  }
+
+  &__btn {
+    font-size: 15px;
+    padding: $padding 0;
+    color: white;
+    background-color: $light-blue;
+    font-weight: 600;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+
+    &:hover {
+      background-color: $dark-blue;
+      cursor: pointer;
+    }
+
+    @include tablet {
+      min-width: 150px;
+      max-width: 150px;
+      padding: 0 $padding * 2;
+      margin-bottom: $margin/2;
+      align-self: flex-end;
+    }
+  }
+}
