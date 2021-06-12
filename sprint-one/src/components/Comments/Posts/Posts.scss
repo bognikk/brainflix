@@ -10,9 +10,8 @@
   @include tablet {
     padding: 0 $padding * 2 $padding;
   }
-
   @include desktop {
-    padding: 0 $padding * 16.5 $padding;
+    padding-right: 0;
   }
 }
 
@@ -107,6 +106,9 @@
     @include tablet {
       // @include body-text;
       color: black;
+    }
+    @include tablet {
+      padding-right: $padding * 2;
     }
   }
 

@@ -6,6 +6,7 @@ import Description from "./components/Description/Description";
 import Comments from "./components/Comments/Comments";
 import SelectedVideo from "./components/SelectedVideo/SelectedVideo";
 import NextVideo from "./components/NextVideo/NextVideo";
+import Main from "./components/Main/Main"
 
 import videoDetails from "./data/video-details.json";
 import videos from "./data/videos.json";
@@ -35,15 +36,17 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <SelectedVideo>
-          <Hero selectedVideoImg={this.state.selectedVideo.image} />
-          <Description selectedVideo={this.state.selectedVideo} />
-          <Comments selectedVideo={this.state.selectedVideo} />
-        </SelectedVideo>
-        <NextVideo
-          handleSelectVideo={this.handleSelectVideo}
-          videos={this.state.videos}
-        ></NextVideo>
+        <Hero selectedVideoImg={this.state.selectedVideo.image} />
+        <Main>
+          <SelectedVideo>
+            <Description selectedVideo={this.state.selectedVideo} />
+            <Comments selectedVideo={this.state.selectedVideo} />
+          </SelectedVideo>
+          <NextVideo
+            handleSelectVideo={this.handleSelectVideo}
+            videos={this.state.videos}
+          ></NextVideo>
+        </Main>
       </div>
     );
   }

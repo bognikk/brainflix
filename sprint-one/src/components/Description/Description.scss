@@ -10,11 +10,19 @@
     padding: $padding $padding * 2;
   }
 
+   @include desktop {
+    padding-right: 0;
+  }
+
   &__main-title {
     @include section-heading;
     // color: $primary-black;
     font-family: "Avenir Bold";
     margin-bottom: $margin;
+
+    @include desktop {
+      margin-top: $margin;
+    }
   }
 
   &__cards-wrapper {
@@ -32,6 +40,9 @@
 
     @include tablet {
       width: 35%;
+    }
+    @include desktop {
+      width: 40%;
     }
   }
 

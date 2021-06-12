@@ -15,7 +15,7 @@ class Form extends React.Component {
         <div className="form-container">
           <div className="img-container"></div>
           <form id="form" className="form">
-            <div className="from__input-wrapper">
+            <div className="form__input-wrapper">
               <label className="form__label" htmlFor="comment">
                 JOIN THE CONVERSATION
               </label>
