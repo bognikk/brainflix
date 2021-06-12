@@ -24,7 +24,7 @@ class App extends React.Component {
     let newSelectedVideo = this.state.videoDetails.find(
       (video) => video.id === id
     );
-    let newVideos = this.state.videos.filter((video) => video.id !== id);
+    let newVideos = videos.filter((video) => video.id !== id);
     this.setState({
       selectedVideo: newSelectedVideo,
       videos: newVideos,
