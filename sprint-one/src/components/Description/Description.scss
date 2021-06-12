@@ -6,11 +6,22 @@
   padding: $padding;
   color: $primary-black;
 
+  @include tablet {
+    padding: $padding $padding * 2;
+  }
+
   &__main-title {
-    @include main-heading-mobile;
+    @include section-heading;
     // color: $primary-black;
     font-family: "Avenir Bold";
     margin-bottom: $margin;
+  }
+
+  &__cards-wrapper {
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__card {
@@ -18,6 +29,10 @@
     align-items: center;
     width: 100%;
     margin-bottom: $margin * 1.5;
+
+    @include tablet {
+      width: 35%;
+    }
   }
 
   &__credits {
@@ -46,15 +61,24 @@
     display: flex;
 
     &:nth-child(2) {
-      margin-left: $margin*2;
+      margin-left: $margin * 2;
     }
   }
 
   &__lower {
     border-top: 2px solid $silver-light;
     padding-top: $padding;
+
+    @include tablet {
+      padding-top: $padding * 1.5;
+    }
+
     &__text {
       @include labels-mobile;
+
+      @include tablet {
+        width: 75%;
+      }
     }
   }
 }

@@ -5,6 +5,10 @@
 .comments-form {
   padding: $padding;
 
+  @include tablet {
+    padding: $padding $padding * 2;
+  }
+
   &__heading {
     @include small-heading;
     // font-size: 16px;
@@ -16,7 +20,8 @@
   position: relative;
 
   @include tablet {
-    padding: $padding * 2 $padding * 4 $padding;
+    // padding: $padding * 2 $padding * 4 $padding;
+    width: 100%;
   }
 
   @include desktop {
@@ -25,7 +30,8 @@
 }
 
 .img-container {
-  background: url("../../../assets/images/Mohan-muruge.jpg") center/cover no-repeat;
+  background: url("../../../assets/images/Mohan-muruge.jpg") center/cover
+    no-repeat;
   min-width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -41,7 +47,11 @@
   font-weight: 600;
   display: flex;
   flex-direction: column;
-  width: 100%;
+
+  @include tablet {
+    flex-direction: row;
+    width: 100%;
+  }
 
   &__label {
     color: $silver-dark;
@@ -50,33 +60,18 @@
     margin-bottom: 4px;
 
     @include tablet {
-      // @include body-text;
       font-weight: 600;
+      // display: flex;
     }
   }
 
-  &__input {
-    height: 36px;
-    border-radius: 4px;
-    padding: 12px;
-    border: 2px solid $primary-black;
-    background-color: white;
-    margin-bottom: $margin;
-    color: black;
-
-    &:focus {
-      outline: none;
-      border: 2px solid black;
-    }
-
-    &::placeholder {
-      color: black;
-      opacity: 1;
-    }
+  &__input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
     @include tablet {
-      // @include body-text;
-      height: 48px;
+      width: 470px;
     }
   }
 
@@ -88,19 +83,27 @@
     background-color: $secondary-white;
     margin-bottom: $margin;
     resize: none;
-    color: black;
+    color: $primary-black;
     height: 100px;
+    width: 100%;
 
     &:focus {
       outline: none;
-      border: 2px solid black;
+      border: 3px solid $light-blue;
     }
 
     &::placeholder {
-      color: black;
+      color: $primary-black;
       opacity: 1;
       text-align: left;
       font-size: 14px;
+    }
+
+    @include tablet {
+      height: 48px;
+      padding: $padding/2 $padding;
+      // width: 100%;
+      margin-bottom: 0;
     }
   }
 
@@ -110,7 +113,7 @@
     color: white;
     background-color: $light-blue;
     font-weight: 600;
-    width: 100%;
+    // width: 100%;
     border-radius: 4px;
     border: none;
 
@@ -122,8 +125,9 @@
     @include tablet {
       min-width: 150px;
       max-width: 150px;
-      padding: 0 $padding * 2;
-      margin-bottom: $margin/2;
+      height: 48px;
+      // padding: 0 $padding * 2;
+      margin: 0 0 5.2px $padding;
       align-self: flex-end;
     }
   }

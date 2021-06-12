@@ -7,33 +7,43 @@ import Comments from "./components/Comments/Comments";
 import SelectedVideo from "./components/SelectedVideo/SelectedVideo";
 import NextVideo from "./components/NextVideo/NextVideo";
 
-import VideoDetails from "./data/video-details.json";
-import Videos from "./data/videos.json";
+import videoDetails from "./data/video-details.json";
+import videos from "./data/videos.json";
 
 import "./App.scss";
 
 class App extends React.Component {
   state = {
-    Videos,
-    VideoDetails,
-    selectedVideo: VideoDetails[0],
+    videos,
+    videoDetails,
+    selectedVideo: videoDetails[0],
   };
 
-  
-  render() {
-    // console.log(this.state.selectedVideo);
+  handleSelectVideo = (id) => {
+    let newSelectedVideo = this.state.videoDetails.find(
+      (video) => video.id === id
+    );
+    let newVideos = this.state.videos.filter((video) => video.id !== id);
+    this.setState({
+      selectedVideo: newSelectedVideo,
+      videos: newVideos,
+    });
+    // window.scrollTo(0, 0);
+  };
 
-    // log();
-    // console.log(this.state.VideoDetails.forEach((video) => console.log(video)));
+  render() {
     return (
       <div className="App">
         <Header />
-        <SelectedVideo className="selectedVideo">
+        <SelectedVideo>
           <Hero selectedVideoImg={this.state.selectedVideo.image} />
           <Description selectedVideo={this.state.selectedVideo} />
           <Comments selectedVideo={this.state.selectedVideo} />
         </SelectedVideo>
-        <NextVideo videos={this.state.Videos}></NextVideo>
+        <NextVideo
+          handleSelectVideo={this.handleSelectVideo}
+          videos={this.state.videos}
+        ></NextVideo>
       </div>
     );
   }

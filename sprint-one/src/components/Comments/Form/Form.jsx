@@ -15,14 +15,16 @@ class Form extends React.Component {
         <div className="form-container">
           <div className="img-container"></div>
           <form id="form" className="form">
-            <label className="form__label" htmlFor="comment">
-              JOIN THE CONVERSATION
-            </label>
-            <textarea
-              className="form__textarea"
-              name="comment"
-              placeholder="Write comment here"
-            ></textarea>
+            <div className="from__input-wrapper">
+              <label className="form__label" htmlFor="comment">
+                JOIN THE CONVERSATION
+              </label>
+              <textarea
+                className="form__textarea"
+                name="comment"
+                placeholder="Write comment here"
+              ></textarea>
+            </div>
             <button
               onClick={(event) => this.onComment(event)}
               className="form__btn"

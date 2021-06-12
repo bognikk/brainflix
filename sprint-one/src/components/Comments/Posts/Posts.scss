@@ -8,7 +8,7 @@
   padding: 0 $padding;
 
   @include tablet {
-    padding: 0 $padding * 4 $padding;
+    padding: 0 $padding * 2 $padding;
   }
 
   @include desktop {
@@ -54,6 +54,11 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
+
+      @include tablet {
+      justify-content: flex-start;
+
+      }
     }
 
     &__lower {
@@ -84,6 +89,7 @@
 
     @include tablet {
       // @include body-text;
+      margin-right: $margin;
       font-weight: 600;
     }
   }
