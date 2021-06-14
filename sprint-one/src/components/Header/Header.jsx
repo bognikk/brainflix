@@ -21,7 +21,7 @@ const Header = () => {
             <img
               className="header__upload__btn__icon"
               src={uploadIcon}
-              alt=""
+              alt="plus icon"
             />
             UPLOAD
           </button>

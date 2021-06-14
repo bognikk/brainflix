@@ -2,20 +2,20 @@ import React from "react";
 
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
+import Main from "./components/Main/Main";
+import SelectedVideo from "./components/SelectedVideo/SelectedVideo";
 import Description from "./components/Description/Description";
 import Comments from "./components/Comments/Comments";
-import SelectedVideo from "./components/SelectedVideo/SelectedVideo";
 import NextVideo from "./components/NextVideo/NextVideo";
-import Main from "./components/Main/Main"
 
-import videoDetails from "./data/video-details.json";
 import videos from "./data/videos.json";
+import videoDetails from "./data/video-details.json";
 
 import "./App.scss";
 
 class App extends React.Component {
   state = {
-    videos,
+    videos: videos.filter((video) => video.id !== videoDetails[0].id),
     videoDetails,
     selectedVideo: videoDetails[0],
   };
@@ -29,7 +29,7 @@ class App extends React.Component {
       selectedVideo: newSelectedVideo,
       videos: newVideos,
     });
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   };
 
   render() {
@@ -45,7 +45,7 @@ class App extends React.Component {
           <NextVideo
             handleSelectVideo={this.handleSelectVideo}
             videos={this.state.videos}
-          ></NextVideo>
+          />
         </Main>
       </div>
     );

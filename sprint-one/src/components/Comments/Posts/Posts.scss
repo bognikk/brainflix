@@ -87,7 +87,6 @@
     font-weight: 600;
 
     @include tablet {
-      // @include body-text;
       margin-right: $margin;
       font-weight: 600;
     }
@@ -104,7 +103,6 @@
     width: 100%;
 
     @include tablet {
-      // @include body-text;
       color: black;
     }
     @include tablet {

@@ -5,8 +5,12 @@
 .next-video {
   padding: $padding * 2 $padding 0;
 
+  @include tablet {
+    padding: $padding * 2 $padding * 2 0;
+  }
+
   @include desktop {
-  padding: $padding * 2.5 $padding 0;
+    padding: $padding * 2.5 $padding 0;
     width: 30%;
     margin: 0;
     border-left: 2px solid $silver-light;
@@ -34,7 +38,7 @@
     }
 
     &:hover {
-      background-color: $silver-light;
+      background-color: #f6f3f3;
     }
 
     &__img {
@@ -63,7 +67,6 @@
 
     &__credits {
       @include labels-mobile;
-      // color: $silver-dark;
     }
   }
 }
