@@ -1,0 +1,121 @@
+@use '../../partials/variables' as *;
+@use '../../partials/typography' as *;
+@use '../../partials/mixins' as *;
+
+.header {
+  padding: $padding;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include tablet {
+    align-items: center;
+    justify-content: space-between;
+    padding: $padding $padding*2;
+  }
+
+  @include desktop {
+    padding: $padding $padding*8;
+  }
+
+  &__logo-link {
+    margin: 0 auto;
+
+    @include tablet {
+      margin: 0;
+    }
+  }
+
+  &__logo-img {
+    width: 110%;
+  }
+
+  &__right-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include tablet {
+      width: 70%;
+      justify-content: flex-end;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    margin: $margin/2 0;
+
+    @include tablet {
+      width: 50%;
+      margin: 0;
+    }
+
+    &__input {
+      background: url("../../assets/images/Icon-search.svg") no-repeat left
+        center;
+      background-position: $padding;
+      border: 2px solid $silver-light;
+      background-color: $secondary-white;
+      height: 48px;
+      border-radius: 4px;
+      width: 100%;
+      padding: 0 $padding * 2.5;
+
+      &:focus {
+        outline: none;
+        border: 2px solid #0095ff;
+      }
+    }
+  }
+
+  &__upload {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    @include tablet {
+      width: auto;
+      margin-left: $margin;
+      justify-content: flex-end;
+    }
+
+    &__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      font-family: "Avenir Demi";
+      background-color: $light-blue;
+      border: none;
+      height: 48px;
+      border-radius: 4px;
+      color: white;
+      font-size: 15px;
+      width: 100%;
+
+      @include tablet {
+        padding: 0 $padding;
+        width: auto;
+      }
+
+      &:hover {
+        background-color: $dark-blue;
+      }
+
+      &__icon {
+        margin-right: $margin/2;
+        width: 18px;
+        margin-bottom: 2px;
+      }
+    }
+
+    &__img {
+      background: url("../../assets/images/Mohan-muruge.jpg") center/cover
+        no-repeat;
+      min-width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-left: $margin;
+    }
+  }
+}
