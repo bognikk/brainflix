@@ -6,13 +6,45 @@
   border-top: 2px solid $silver-light;
   padding: $padding;
 
+  @include tablet {
+    padding: $padding $padding * 2;
+    border-top: 1px solid $silver-light;
+  }
+
+  @include desktop {
+    padding: $padding $padding * 8;
+  }
+
   &__heading {
     font-family: "Avenir Bold";
     margin: $margin 0 $margin * 2;
+
+    @include tablet {
+      @include section-heading;
+      padding-bottom: $padding * 1.5;
+      border-bottom: 2px solid $silver-light;
+    }
+  }
+
+  &__desktopSizeWrapper {
+    @include desktop {
+      display: flex;
+      // height: 200px;
+    }
   }
 
   &__img {
     margin: $margin * 1.5 0;
+
+    @include tablet {
+      width: 50%;
+      margin-top: 0;
+    }
+
+    @include desktop {
+      margin: 0 $margin 0 0;
+      // width: 50%;
+    }
 
     &__thumbnail {
       color: $silver-dark;
@@ -23,6 +55,11 @@
     &__image {
       width: 100%;
       border-radius: 4px;
+
+      // @include desktop {
+      //   max-width: 100%;
+      //   height: auto;
+      // }
     }
   }
 
@@ -32,11 +69,12 @@
     flex-direction: column;
     width: 100%;
 
+    @include desktop {
+      // height: auto;
+    }
+
     &__label {
-      color: $silver-dark;
-      font-size: 13px;
-      border-radius: 4px;
-      margin-bottom: 4px;
+      @extend .upload__img__thumbnail;
 
       @include tablet {
         font-weight: 600;
@@ -47,8 +85,7 @@
       border: 2px solid $silver-light;
       background-color: $secondary-white;
       color: $primary-black;
-
-      height: 48px;
+      min-height: 48px;
       border-radius: 4px;
       width: 100%;
       padding: 0 $padding;
@@ -78,10 +115,10 @@
       height: 150px;
       width: 100%;
 
-      @include tablet {
-        padding: $padding $padding 0 $padding;
-        height: 48px;
+      @include desktop {
+        height: 92px;
         margin-bottom: 0;
+        // min-height: auto;
       }
 
       &:focus {
@@ -101,6 +138,13 @@
     display: flex;
     flex-direction: column;
 
+    @include tablet {
+      flex-direction: row-reverse;
+      border-top: 2px solid $silver-light;
+      margin-top: $margin;
+      padding-top: $padding;
+    }
+
     &__btn {
       font-family: "Avenir Demi";
       background-color: $light-blue;
@@ -116,6 +160,10 @@
         background-color: white;
         color: $light-blue;
 
+        @include tablet {
+          margin-right: $margin;
+        }
+
         &:hover {
           background-color: $dark-blue;
           color: white;
@@ -123,7 +171,7 @@
       }
 
       @include tablet {
-        padding: 0 $padding;
+        padding: 0 $padding * 3;
         width: auto;
       }
 
