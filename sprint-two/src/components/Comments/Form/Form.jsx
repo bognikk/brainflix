@@ -3,10 +3,12 @@ import React from "react";
 import "../Form/Form.scss";
 
 class Form extends React.Component {
-  onComment = (event) => {
+  onSubmit = (event) => {
     event.preventDefault();
   };
   render() {
+    // console.log(this.props.selectedVideo);
+
     return (
       <section className="comments-form">
         <h2 className="comments-form__heading">
@@ -14,7 +16,11 @@ class Form extends React.Component {
         </h2>
         <div className="form-container">
           <div className="img-container"></div>
-          <form id="form" className="form">
+          <form
+            onSubmit={(event) => this.onSubmit(event)}
+            id="form"
+            className="form"
+          >
             <div className="form__input-wrapper">
               <label className="form__label" htmlFor="comment">
                 JOIN THE CONVERSATION
@@ -25,10 +31,7 @@ class Form extends React.Component {
                 placeholder="Write comment here"
               ></textarea>
             </div>
-            <button
-              onClick={(event) => this.onComment(event)}
-              className="form__btn"
-            >
+            <button type="submit" className="form__btn">
               COMMENT
             </button>
           </form>

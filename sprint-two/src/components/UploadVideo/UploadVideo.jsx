@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import "../UploadVideo/UploadVideo.scss";
 import bikeImage from "../../assets/images/Upload-video-preview.jpg";
 
-export class UploadVideo extends Component {
-  static propTypes = {};
+class UploadVideo extends Component {
+  onClick = (event) => {
+    event.preventDefault();
+    alert("YOUR VIDEO IS UPLOADED");
+    this.props.history.push("/");
+  };
 
   render() {
     return (
@@ -18,7 +22,10 @@ export class UploadVideo extends Component {
               alt="blue bike"
             />
           </div>
-          <form className="upload__form">
+          <form
+            // onSubmit={(event) => this.onSubmit(event)}
+            className="upload__form"
+          >
             <label className="upload__form__label" htmlFor="title">
               TITLE YOUR VIDEO
             </label>
@@ -40,7 +47,12 @@ export class UploadVideo extends Component {
           </form>
         </div>
         <div className="upload__buttons">
-          <button className="upload__buttons__btn">PUBLISH</button>
+          <button
+            onClick={(event) => this.onClick(event)}
+            className="upload__buttons__btn"
+          >
+            PUBLISH
+          </button>
           <button className="upload__buttons__btn">CANCEL</button>
         </div>
       </section>

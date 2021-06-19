@@ -29,7 +29,7 @@
   &__desktopSizeWrapper {
     @include desktop {
       display: flex;
-      // height: 200px;
+      padding-bottom: $padding;
     }
   }
 
