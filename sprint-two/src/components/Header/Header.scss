@@ -50,7 +50,7 @@
       margin: 0;
     }
 
-    &__input {
+    &-input {
       background: url("../../assets/images/Icon-search.svg") no-repeat left
         center;
       background-position: $padding;
@@ -79,12 +79,12 @@
       justify-content: flex-end;
     }
 
-    &__btn {
+    &-btn {
       display: flex;
       justify-content: center;
       align-items: center;
       text-decoration: none;
-      font-family: "Avenir Demi";
+      font-weight: 600;
       background-color: $light-blue;
       border: none;
       height: 48px;
@@ -102,14 +102,14 @@
         background-color: $dark-blue;
       }
 
-      &__icon {
+      &-icon {
         margin-right: $margin/2;
         width: 18px;
         margin-bottom: 2px;
       }
     }
 
-    &__img {
+    &-img {
       background: url("../../assets/images/Mohan-muruge.jpg") center/cover
         no-repeat;
       min-width: 48px;

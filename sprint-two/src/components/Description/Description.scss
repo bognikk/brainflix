@@ -7,16 +7,17 @@
   color: $primary-black;
 
   @include tablet {
-    padding: $padding $padding * 2;
+    padding: $padding * 2.5 $padding * 2 $padding;
   }
 
   @include desktop {
+    padding: $padding $padding * 2;
     padding-right: 0;
   }
 
   &__main-title {
     @include main-heading-mobile;
-    font-family: "Avenir Bold";
+    font-weight: 700;
     margin-bottom: $margin;
 
     @include tablet {
@@ -87,7 +88,7 @@
       padding-top: $padding * 1.5;
     }
 
-    &__text {
+    &-text {
       @include labels-mobile;
 
       @include tablet {

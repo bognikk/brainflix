@@ -16,8 +16,9 @@
   }
 
   &__heading {
-    font-family: "Avenir Bold";
+    font-weight: 700;
     margin: $margin 0 $margin * 2;
+    color: $primary-black;
 
     @include tablet {
       @include section-heading;
@@ -46,20 +47,15 @@
       // width: 50%;
     }
 
-    &__thumbnail {
+    &-thumbnail {
       color: $silver-dark;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
     }
 
-    &__image {
+    &-image {
       width: 100%;
       border-radius: 4px;
-
-      // @include desktop {
-      //   max-width: 100%;
-      //   height: auto;
-      // }
     }
   }
 
@@ -73,23 +69,20 @@
       // height: auto;
     }
 
-    &__label {
-      @extend .upload__img__thumbnail;
-
-      @include tablet {
-        font-weight: 600;
-      }
+    &-label {
+      @extend .upload__img-thumbnail;
     }
 
-    &__input {
+    &-input {
       border: 2px solid $silver-light;
       background-color: $secondary-white;
-      color: $primary-black;
+      
       min-height: 48px;
       border-radius: 4px;
       width: 100%;
       padding: 0 $padding;
       margin-bottom: $margin * 1.5;
+
 
       &:focus {
         outline: none;
@@ -99,11 +92,11 @@
       &::placeholder {
         color: $primary-black;
         font-size: 14px;
-        font-weight: bold;
+        font-weight: 600;
       }
     }
 
-    &__textarea {
+    &-textarea {
       min-height: 36px;
       border-radius: 4px;
       padding: $padding;
@@ -128,7 +121,7 @@
 
       &::placeholder {
         color: $primary-black;
-        font-weight: bold;
+        font-weight: 600;
         font-size: 14px;
       }
     }
@@ -145,8 +138,8 @@
       padding-top: $padding;
     }
 
-    &__btn {
-      font-family: "Avenir Demi";
+    &-btn {
+      font-weight: 600;
       background-color: $light-blue;
       border: none;
       height: 48px;

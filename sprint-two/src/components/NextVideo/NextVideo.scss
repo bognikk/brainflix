@@ -32,7 +32,7 @@
     color: $primary-black;
 
     @include tablet {
-      width: 61%;
+      width: 44%;
     }
 
     @include desktop {
@@ -43,7 +43,7 @@
       background-color: #f6f3f3;
     }
 
-    &__img {
+    &-img {
       min-width: 120px;
       max-width: 120px;
 
@@ -52,14 +52,14 @@
       object-fit: cover;
     }
 
-    &__description {
+    &-description {
       margin-left: $margin;
     }
 
-    &__title {
+    &-title {
       @include subheading-mobile;
       margin-bottom: $margin/2;
-      font-weight: 700;
+      font-weight: 600;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -67,7 +67,7 @@
       text-overflow: ellipsis;
     }
 
-    &__credits {
+    &-credits {
       @include labels-mobile;
     }
   }

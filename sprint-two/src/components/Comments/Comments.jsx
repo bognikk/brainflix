@@ -1,8 +1,8 @@
 import React from "react";
 
-import Posts from "./Posts/Posts";
-import Form from "./Form/Form";
-import "../Comments/Comments.scss";
+import Form from "./CommentsForm/CommentsForm";
+import Posts from "./CommentsPosts/CommentsPosts";
+import "./Comments.scss";
 
 class Comments extends React.Component {
   render() {
@@ -10,8 +10,8 @@ class Comments extends React.Component {
 
     return (
       <>
-        <Form selectedVideo={selectedVideo} />
-        <Posts selectedVideo={selectedVideo} />
+        <Form numberOfComments={selectedVideo.comments.length} />
+        <Posts posts={selectedVideo.comments} />
       </>
     );
   }

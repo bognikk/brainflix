@@ -1,8 +1,8 @@
-import "../Header/Header.scss";
+import { Link } from "react-router-dom";
 import logoImg from "../../assets/images/Logo-brainflix.svg";
 import uploadIcon from "../../assets/images/Icon-upload.svg";
+import "./Header.scss";
 
-import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,22 +13,22 @@ const Header = () => {
       <div className="header__right-container">
         <form className="header__form">
           <input
-            className="header__form__input"
+            className="header__form-input"
             placeholder="Search"
             type="text"
           />
         </form>
         <div className="header__upload">
-          <Link to="/upload" className="header__upload__btn">
+          <Link to="/upload" className="header__upload-btn">
             <img
-              className="header__upload__btn__icon"
+              className="header__upload-btn-icon"
               src={uploadIcon}
               alt="plus icon"
             />
             UPLOAD
           </Link>
 
-          <div className="header__upload__img"></div>
+          <div className="header__upload-img"></div>
         </div>
       </div>
     </header>
