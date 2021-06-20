@@ -14,7 +14,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/upload" component={UploadVideo} />
-        <Route path="/:id" render={(routeProps) => <Home {...routeProps} />} />
+        <Route path="/:id" component={Home} />
       </Switch>
     </BrowserRouter>
   );

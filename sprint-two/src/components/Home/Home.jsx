@@ -17,7 +17,7 @@ class Home extends Component {
   };
 
   getVideos() {
-    return axios
+    axios
       .get(`${BASE_URL}/videos/${API_KEY}`)
       .then((resp) => {
         // console.log(resp.data);
@@ -25,7 +25,11 @@ class Home extends Component {
           videos: resp.data,
           // selectedVideo: resp.data[0]
         });
-        this.getVideoFromId(resp.data[0].id);
+        if (this.props.match.url === "/") {
+          this.getVideoFromId(resp.data[0].id);
+        } else {
+          this.getVideoFromId(this.props.match.params.id);
+        }
         // this.handleSelectVideo(videoID);
       })
       .catch((err) => {
@@ -34,7 +38,7 @@ class Home extends Component {
   }
 
   getVideoFromId(videoID) {
-    return axios
+    axios
       .get(`${BASE_URL}/videos/${videoID}${API_KEY}`)
       .then((resp) => {
         // console.log(resp.data);
@@ -42,7 +46,6 @@ class Home extends Component {
           selectedVideo: resp.data,
           // firstVid: resp.data
         });
-        // this.handleSelectVideo(videoID);
       })
       .catch((err) => {
         console.log(err);
@@ -51,14 +54,15 @@ class Home extends Component {
 
   componentDidMount() {
     this.getVideos();
-    console.log("MOUNT", this.props.match.params);
 
-    if (!this.props.match.params) {
-      // this.setState({
-      //   selectedVideo: this.state.videos[0],
-      //   // firstVid: resp.data
-      // });
-    }
+    // console.log("MOUNT", this.props.match.params);
+
+    // if (this.props.match.params === ) {
+    //   // this.setState({
+    //   //   selectedVideo: this.state.videos[0],
+    //   //   // firstVid: resp.data
+    //   // });
+    // }
 
     // // console.log(this.props.match.params);
     // // console.log(videoID);
@@ -71,76 +75,45 @@ class Home extends Component {
     // this.fetchData(videoID);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // let videoID = this.state.videos[0].id;
-    const prevVideoID = prevProps.match.params.id;
+  componentDidUpdate(prevProps) {
     const videoID = this.props.match.params.id;
+    const prevVideoID = prevProps.match.params.id;
 
-    console.log("prevVideoID", prevVideoID);
-    console.log("videoID", videoID);
+  
+    if (this.props.match.url === "/" && videoID !== prevVideoID) {
+      this.getVideoFromId(this.state.videos[0].id);
+    } else if (videoID !== prevVideoID) {
+      this.getVideoFromId(videoID);
+    }
 
-    // if (videoID !== prevVideoID) {
-    //   // mockApi.getSingle(studentId).then((studentData) => {
-    //   //   console.log(studentData);
-    //   //   this.setState({ student: studentData });
-    //   //   console.log(this.state.student);
-    //   // });
-    // }
+    // // let isMounted = true;
+    // const prevVideoID = prevProps.match.params.id;
+    // const videoID = this.props.match.params.id;
+    // // const prevProps = prevProps.match.params.id;
+    // console.log("prevVideoID:", prevVideoID);
 
-    // if (this.props.match.url === "/") {
-    //   this.getVideoFromId(this.state.videos[0].id);
+    // // console.log("prevVideoID:", prevVideoID);
+    // // console.log("videoID:", videoID);
 
-    //   // this.setState({
-    //   //   selectedVideo: this.state.videos[0],
-    //   //   // firstVid: resp.data
-    //   // });
-    // }
-
-    // const { videoID } = this.props.match.params;
-    // console.log("UPDATE", this.props.match.params);
-    // if (videoID !== prevProps.match.params.videoID) {
-    //   this.getVideoFromId(videoID);
-    // }
-    // if (this.state.selectedVideo) {
-    //   // this.getVideoFromId(videoID);
-    //   return
-    // }
-    // this.getVideoFromId(vidID);
-    console.log("UPADATE PROPS", this.props.match);
-
-    console.log("props changed", prevProps);
-    console.log("prev state", prevState);
-
-    // console.log(this.props);
+    // // if (videoID === undefined) {
+    // //   this.getVideoFromId(this.state.videos[0].id);
+    // // } else {
+    // //   this.getVideoFromId(videoID);
+    // // }
   }
 
-  fetchData = (id) => {
-    this.getVideoFromId(id);
-    window.scrollTo(0, 80);
-  };
+  componentWillUnmount() {
+    // getVideoFromId;
+  }
 
-  // handleSelectVideo = (id) => {
-
-  //   console.log(id, this.state)
-  //   // let newSelectedVideo = { ...this.state.selectedVideo };
-  //   // let newSelectedVideo = this.state.videoDetails.find(
-  //   //   (video) => video.id === id
-  //   //   );
-  //   // let newVideos = this.videos.filter((video) => video.id !== id);
-  //   // this.setState({
-  //   //   selectedVideo: newSelectedVideo,
-  //   //   // videos: newVideos,
-  //   // });
-  //   window.scrollTo(0, 80);
+  // fetchData = (id) => {
+  //   this.getVideoFromId(id);
   // };
 
   render() {
     if (!this.state.selectedVideo) {
       return <div>Loading</div>;
     }
-    // console.log(this.state.selectedVideo);
-    // console.log(this.state.selectedVideo);
-    // console.log("COOOOMMMMM: ", this.state.allVideos[0]);
     return (
       <>
         <Hero selectedVideoImg={this.state.selectedVideo.image} />
@@ -151,9 +124,9 @@ class Home extends Component {
           </SelectedVideo>
           <NextVideo
             fetchData={this.fetchData}
-            videos={this.state.videos}
-            selectedVideoId={this.state.selectedVideo.id}
-            // handleFirst={this.handleFirst}
+            videos={this.state.videos.filter(
+              (video) => video.id !== this.state.selectedVideo.id
+            )}
           />
         </Main>
       </>

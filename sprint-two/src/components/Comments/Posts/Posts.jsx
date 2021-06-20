@@ -3,10 +3,11 @@ import React from "react";
 import "../Posts/Posts.scss";
 
 const Posts = (props) => {
+    const { selectedVideo } = props;
   return (
     <>
       <div className="posts-container">
-        {props.selectedVideo.comments.map((comment) => {
+        {selectedVideo.comments.map((comment) => {
           return (
             <div key={comment.id} className="post">
               <div className="post__img"></div>

@@ -9,6 +9,12 @@ class UploadVideo extends Component {
     this.props.history.push("/");
   };
 
+  goBack = (event) => {
+    event.preventDefault();
+    // alert("YOUR VIDEO IS UPLOADED");
+    this.props.history.goBack();
+  };
+
   render() {
     return (
       <section className="upload">
@@ -22,10 +28,7 @@ class UploadVideo extends Component {
               alt="blue bike"
             />
           </div>
-          <form
-            // onSubmit={(event) => this.onSubmit(event)}
-            className="upload__form"
-          >
+          <form className="upload__form">
             <label className="upload__form__label" htmlFor="title">
               TITLE YOUR VIDEO
             </label>
@@ -53,7 +56,12 @@ class UploadVideo extends Component {
           >
             PUBLISH
           </button>
-          <button className="upload__buttons__btn">CANCEL</button>
+          <button
+            onClick={(event) => this.goBack(event)}
+            className="upload__buttons__btn"
+          >
+            CANCEL
+          </button>
         </div>
       </section>
     );

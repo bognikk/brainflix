@@ -7,12 +7,12 @@ class Form extends React.Component {
     event.preventDefault();
   };
   render() {
-    // console.log(this.props.selectedVideo);
+    const { selectedVideo } = this.props;
 
     return (
       <section className="comments-form">
         <h2 className="comments-form__heading">
-          {this.props.selectedVideo.comments.length} Comments
+          {selectedVideo.comments.length} Comments
         </h2>
         <div className="form-container">
           <div className="img-container"></div>
