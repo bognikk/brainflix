@@ -6,12 +6,16 @@ import "./Comments.scss";
 
 class Comments extends React.Component {
   render() {
-    const { selectedVideo } = this.props;
+    const { selectedVideo, sendComment } = this.props;
 
     return (
       <>
-        <Form numberOfComments={selectedVideo.comments.length} />
-        <Posts posts={selectedVideo.comments} />
+        <Form
+          numberOfComments={selectedVideo.comments.length}
+          videoID={selectedVideo.id}
+          sendComment={sendComment}
+        />
+        <Posts posts={selectedVideo.comments.reverse()} />
       </>
     );
   }

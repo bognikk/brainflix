@@ -6,6 +6,8 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 $padding;
+  max-height: 400px;
+  overflow-y: scroll;
 
   @include tablet {
     padding: 0 $padding * 2 $padding;

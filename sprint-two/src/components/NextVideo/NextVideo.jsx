@@ -4,25 +4,6 @@ import "./NextVideo.scss";
 const NextVideo = (props) => {
   const { videos } = props;
 
-  // state = {
-  //   videos: [],
-  // };
-
-  // componentDidMount() {
-  //   // GET videos for next video
-  //   axios
-  //     .get(`${BASE_URL}/videos${API_KEY}`)
-  //     .then((resp) => {
-  //       // console.log(resp.data);
-  //       this.setState({
-  //         videos: resp.data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
   return (
     <section className="next-video">
       <h2 className="next-video__heading">NEXT VIDEO</h2>

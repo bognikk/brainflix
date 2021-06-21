@@ -4,8 +4,8 @@ import axios from "axios";
 import { BASE_URL, API_KEY } from "../../utils/utils";
 
 import Hero from "../Hero/Hero";
-import Main from "../Main/Main";
-import SelectedVideo from "../SelectedVideo/SelectedVideo";
+import Main from "../UI/Main";
+import SelectedVideo from "../UI/SelectedVideo";
 import Description from "../Description/Description";
 import Comments from "../Comments/Comments";
 import NextVideo from "../NextVideo/NextVideo";
@@ -47,6 +47,7 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
       });
+    console.log("getVideoFromId");
   }
 
   componentDidMount() {
@@ -57,14 +58,31 @@ class Home extends Component {
     const videoID = this.props.match.params.id;
     const prevVideoID = prevProps.match.params.id;
 
-    // console.group("=======NEW========");
-    // console.log("prevVideoID:", prevVideoID);
-    // console.log("videoID:", videoID);
-
     if (videoID !== prevVideoID) {
       this.getVideoFromId(videoID);
     }
   }
+
+  sendComment = (event) => {
+    const videoID = this.state.selectedVideo.id;
+    const newComment = event.target.comment.value;
+    event.preventDefault();
+    if (newComment !== "") {
+      axios
+        .post(`${BASE_URL}/videos/${videoID}/comments${API_KEY}`, {
+          name: "Nikola Bogicevic",
+          comment: event.target.comment.value,
+        })
+        .then((resp) => {
+          console.log(resp);
+          this.getVideoFromId(videoID);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      event.target.comment.value = "";
+    }
+  };
 
   render() {
     // console.log(this.state.selectedVideo);
@@ -78,7 +96,10 @@ class Home extends Component {
         <Main>
           <SelectedVideo>
             <Description selectedVideo={this.state.selectedVideo} />
-            <Comments selectedVideo={this.state.selectedVideo} />
+            <Comments
+              selectedVideo={this.state.selectedVideo}
+              sendComment={this.sendComment}
+            />
           </SelectedVideo>
           <NextVideo
             fetchData={this.fetchData}
