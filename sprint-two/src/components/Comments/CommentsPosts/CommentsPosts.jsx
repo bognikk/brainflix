@@ -2,7 +2,7 @@ import React from "react";
 import "./CommentsPosts.scss";
 
 const Posts = (props) => {
-  const { posts } = props;
+  const { posts, deleteComment } = props;
   return (
     <>
       <div className="posts-container">
@@ -19,6 +19,7 @@ const Posts = (props) => {
                 </div>
                 <div className="post__text">{post.comment}</div>
               </div>
+              <button onClick={() => deleteComment(post.id)}>DELETE</button>
             </div>
           );
         })}

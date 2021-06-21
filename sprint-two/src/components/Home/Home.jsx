@@ -66,7 +66,9 @@ class Home extends Component {
   sendComment = (event) => {
     const videoID = this.state.selectedVideo.id;
     const newComment = event.target.comment.value;
+
     event.preventDefault();
+
     if (newComment !== "") {
       axios
         .post(`${BASE_URL}/videos/${videoID}/comments${API_KEY}`, {
@@ -84,9 +86,21 @@ class Home extends Component {
     }
   };
 
-  render() {
-    // console.log(this.state.selectedVideo);
+  deleteComment = (postID) => {
+    const videoID = this.state.selectedVideo.id;
 
+    axios
+      .delete(`${BASE_URL}/videos/${videoID}/comments/${postID}${API_KEY}`)
+      .then(() => {
+        this.getVideoFromId(videoID);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }
+
+  render() {
     if (!this.state.selectedVideo) {
       return <div>Loading...</div>;
     }
@@ -99,6 +113,7 @@ class Home extends Component {
             <Comments
               selectedVideo={this.state.selectedVideo}
               sendComment={this.sendComment}
+              deleteComment={this.deleteComment}
             />
           </SelectedVideo>
           <NextVideo

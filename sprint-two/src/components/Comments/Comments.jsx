@@ -6,7 +6,7 @@ import "./Comments.scss";
 
 class Comments extends React.Component {
   render() {
-    const { selectedVideo, sendComment } = this.props;
+    const { selectedVideo, sendComment, deleteComment } = this.props;
 
     return (
       <>
@@ -15,7 +15,10 @@ class Comments extends React.Component {
           videoID={selectedVideo.id}
           sendComment={sendComment}
         />
-        <Posts posts={selectedVideo.comments.reverse()} />
+        <Posts
+          posts={selectedVideo.comments.reverse()}
+          deleteComment={deleteComment}
+        />
       </>
     );
   }
