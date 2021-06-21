@@ -20,7 +20,6 @@ class Home extends Component {
     axios
       .get(`${BASE_URL}/videos/${API_KEY}`)
       .then((resp) => {
-        // console.log(resp.data);
         this.setState({
           videos: resp.data,
         });
@@ -39,7 +38,6 @@ class Home extends Component {
     axios
       .get(`${BASE_URL}/videos/${videoID}${API_KEY}`)
       .then((resp) => {
-        // console.log(resp.data);
         this.setState({
           selectedVideo: resp.data,
         });
@@ -47,7 +45,6 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
       });
-    console.log("getVideoFromId");
   }
 
   componentDidMount() {
@@ -63,6 +60,7 @@ class Home extends Component {
     }
   }
 
+  // DIVE DEEPER
   sendComment = (event) => {
     const videoID = this.state.selectedVideo.id;
     const newComment = event.target.comment.value;
@@ -72,16 +70,16 @@ class Home extends Component {
     if (newComment !== "") {
       axios
         .post(`${BASE_URL}/videos/${videoID}/comments${API_KEY}`, {
-          name: "Nikola Bogicevic",
+          name: "John Doe",
           comment: event.target.comment.value,
         })
-        .then((resp) => {
-          console.log(resp);
+        .then(() => {
           this.getVideoFromId(videoID);
         })
         .catch((error) => {
           console.log(error);
         });
+
       event.target.comment.value = "";
     }
   };
@@ -97,8 +95,7 @@ class Home extends Component {
       .catch((error) => {
         console.log(error);
       });
-
-  }
+  };
 
   render() {
     if (!this.state.selectedVideo) {
@@ -117,7 +114,6 @@ class Home extends Component {
             />
           </SelectedVideo>
           <NextVideo
-            fetchData={this.fetchData}
             videos={this.state.videos.filter(
               (video) => video.id !== this.state.selectedVideo.id
             )}

@@ -18,8 +18,8 @@ const Posts = (props) => {
                   </div>
                 </div>
                 <div className="post__text">{post.comment}</div>
+                <button className="post__btn" onClick={() => deleteComment(post.id)}>DELETE</button>
               </div>
-              <button onClick={() => deleteComment(post.id)}>DELETE</button>
             </div>
           );
         })}
