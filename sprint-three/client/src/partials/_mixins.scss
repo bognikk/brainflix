@@ -1,0 +1,89 @@
+@use "./variables" as *;
+@use './typography' as *;
+
+// DOCUMENT
+@mixin whole-document-rules {
+  *,
+  * ::after,
+  * ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Avenir";
+  }
+}
+
+// // TABLET AND DESKTOP TEXT AND HEADINGS
+@mixin main-heading {
+  font-size: 60px;
+  line-height: 68px;
+}
+
+@mixin section-heading {
+  font-size: 36px;
+  line-height: 44px;
+}
+
+@mixin subheading {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@mixin small-heading {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin paragraphs-comments {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@mixin lists-contacts {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin labels {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+// // MOBILE TEXT AND HEADINGS
+@mixin main-heading-mobile {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@mixin subheading-mobile {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@mixin paragraphs-comments-mobile {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+@mixin lists-contacts-mobile {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+@mixin labels-mobile {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+// MEDIA QUERIES
+@mixin tablet {
+  @media (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}

@@ -1,0 +1,99 @@
+@use '../../partials/variables' as *;
+@use '../../partials/typography' as *;
+@use '../../partials/mixins' as *;
+
+.desc {
+  padding: $padding;
+  color: $primary-black;
+
+  @include tablet {
+    padding: $padding * 2.5 $padding * 2 $padding;
+  }
+
+  @include desktop {
+    padding: $padding $padding * 2;
+    padding-right: 0;
+  }
+
+  &__main-title {
+    @include main-heading-mobile;
+    font-weight: 700;
+    margin-bottom: $margin;
+
+    @include tablet {
+      @include section-heading;
+    }
+
+    @include desktop {
+      margin-top: $margin;
+    }
+  }
+
+  &__cards-wrapper {
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: $margin * 1.5;
+
+    @include tablet {
+      width: 35%;
+    }
+    @include desktop {
+      width: 40%;
+    }
+  }
+
+  &__credits {
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: $margin/2;
+  }
+
+  &__date {
+    color: $silver-dark;
+  }
+
+  &__views {
+    font-size: 15px;
+  }
+
+  &__likes {
+    font-size: 15px;
+  }
+
+  &__icon {
+    margin-right: $margin/2;
+  }
+
+  &__wrapper {
+    display: flex;
+
+    &:nth-child(2) {
+      margin-left: $margin * 2;
+    }
+  }
+
+  &__lower {
+    border-top: 2px solid $silver-light;
+    padding-top: $padding;
+
+    @include tablet {
+      padding-top: $padding * 1.5;
+    }
+
+    &-text {
+      @include labels-mobile;
+
+      @include tablet {
+        width: 75%;
+      }
+    }
+  }
+}
