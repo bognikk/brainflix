@@ -8,7 +8,8 @@ import bikeImage from "../../assets/images/Upload-video-preview.jpg";
 
 class UploadVideo extends Component {
   state = {
-    showModal: false,
+    showModalSuccess: false,
+    showModalFail: false,
   };
 
   postVideo = (event) => {
@@ -17,19 +18,19 @@ class UploadVideo extends Component {
         id: uuidv4().toString(),
         title: event.target.title.value,
         channel: event.target.channel.value,
-        // image: "https://i.imgur.com/8U6MQEk.jpeg",
+        image: "/images/upload.jpg",
         description: event.target.description.value,
         views: "500",
         likes: "110",
         duration: "5:93",
-        video: "https://project-2-api.herokuapp.com/stream",
-        timestamp: 1545162149000,
+        video: "https://www.youtube.com/watch?v=8Lff5W4OygM",
+        timestamp: new Date().getTime(),
         comments: [],
       })
       .then((res) => {
         if (res.status === 201) {
           this.setState({
-            showModal: true,
+            showModalSuccess: true,
           });
         }
       })
@@ -46,19 +47,43 @@ class UploadVideo extends Component {
     this.props.history.goBack();
   };
 
+  acknowledgeMistake = () => {
+    this.setState({
+      showModalFail: false,
+    });
+  };
+
   uploadNewVideo = (event) => {
     event.preventDefault();
 
-    this.postVideo(event);
+    if (
+      !event.target.title.value ||
+      !event.target.channel.value ||
+      !event.target.description.value
+    ) {
+       this.setState({
+         showModalFail: true,
+       });
+    } else {
+      this.postVideo(event);
+    }
   };
 
   render() {
     return (
       <>
-        {this.state.showModal && (
+        {this.state.showModalSuccess && (
           <Modal
-            title="Your video is submitted successfully!"
+            title="Your video is submitted successfully, mate!"
             action={this.finishUpload}
+            btnTxt="Okay"
+          />
+        )}
+        {this.state.showModalFail && (
+          <Modal
+            title="Oi mate, check your imputs!"
+            action={this.acknowledgeMistake}
+            btnTxt="Fine..."
           />
         )}
         <section className="upload">
