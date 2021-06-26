@@ -46,17 +46,16 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
       });
-    
-    // window.scrollTo({
-    //   top: 80,
-    //   left: 0,
-    //   behavior: "smooth",
-    // });
+
+    window.scrollTo({
+      top: 80,
+      left: 0,
+      behavior: "smooth",
+    });
   }
 
   componentDidMount() {
     this.getVideos();
-    
   }
 
   componentDidUpdate(prevProps) {
@@ -84,7 +83,7 @@ class Home extends Component {
           comment: event.target.comment.value,
           id: uuidv4().toString(),
           likes: 0,
-          timestamp: 1542262984046,
+          timestamp: new Date().getTime(),
         })
         .then((res) => {
           console.log(res, videoID);

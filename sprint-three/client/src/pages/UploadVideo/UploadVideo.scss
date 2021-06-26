@@ -66,8 +66,7 @@
     flex-direction: column;
 
     @include desktop {
-    width: 100%;
-
+      width: 100%;
     }
 
     &-label {
@@ -77,13 +76,12 @@
     &-input {
       border: 2px solid $silver-light;
       background-color: $secondary-white;
-      
+
       min-height: 48px;
       border-radius: 4px;
       width: 100%;
       padding: 0 $padding;
       margin-bottom: $margin * 1.5;
-
 
       &:focus {
         outline: none;
@@ -161,6 +159,7 @@
         &:hover {
           background-color: $dark-blue;
           color: white;
+          cursor: pointer;
         }
       }
 
@@ -171,6 +170,7 @@
 
       &:hover {
         background-color: $dark-blue;
+        cursor: pointer;
       }
     }
   }

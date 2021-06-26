@@ -12,7 +12,7 @@ class UploadVideo extends Component {
     showModalFail: false,
   };
 
-  postVideo = (event) => {
+  uploadVideo = (event) => {
     axios
       .post(`/videos`, {
         id: uuidv4().toString(),
@@ -39,6 +39,22 @@ class UploadVideo extends Component {
       });
   };
 
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+
+    if (
+      !event.target.title.value ||
+      !event.target.channel.value ||
+      !event.target.description.value
+    ) {
+      this.setState({
+        showModalFail: true,
+      });
+    } else {
+      this.uploadVideo(event);
+    }
+  };
+
   finishUpload = () => {
     this.props.history.push("/");
   };
@@ -51,22 +67,6 @@ class UploadVideo extends Component {
     this.setState({
       showModalFail: false,
     });
-  };
-
-  uploadNewVideo = (event) => {
-    event.preventDefault();
-
-    if (
-      !event.target.title.value ||
-      !event.target.channel.value ||
-      !event.target.description.value
-    ) {
-       this.setState({
-         showModalFail: true,
-       });
-    } else {
-      this.postVideo(event);
-    }
   };
 
   render() {
@@ -98,7 +98,7 @@ class UploadVideo extends Component {
               />
             </div>
             <form
-              onSubmit={this.uploadNewVideo}
+              onSubmit={this.handleOnSubmit}
               id="uploadForm"
               className="upload__form"
             >
