@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 import { BASE_URL, API_KEY } from "../../utils/utils";
 
@@ -18,7 +19,7 @@ class Home extends Component {
 
   getVideos() {
     axios
-      .get(`${BASE_URL}/videos/${API_KEY}`)
+      .get(`/videos`)
       .then((resp) => {
         this.setState({
           videos: resp.data,
@@ -36,7 +37,7 @@ class Home extends Component {
 
   getVideoFromId(videoID) {
     axios
-      .get(`${BASE_URL}/videos/${videoID}${API_KEY}`)
+      .get(`/videos/${videoID}`)
       .then((resp) => {
         this.setState({
           selectedVideo: resp.data,
@@ -45,17 +46,26 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
       });
+    
+    // window.scrollTo({
+    //   top: 80,
+    //   left: 0,
+    //   behavior: "smooth",
+    // });
   }
 
   componentDidMount() {
     this.getVideos();
+    
   }
 
   componentDidUpdate(prevProps) {
     const videoID = this.props.match.params.id;
     const prevVideoID = prevProps.match.params.id;
 
-    if (videoID !== prevVideoID) {
+    if (videoID === undefined && videoID !== prevVideoID) {
+      this.getVideoFromId(this.state.videos[0].id);
+    } else if (videoID !== prevVideoID) {
       this.getVideoFromId(videoID);
     }
   }
@@ -69,17 +79,21 @@ class Home extends Component {
 
     if (newComment !== "") {
       axios
-        .post(`${BASE_URL}/videos/${videoID}/comments${API_KEY}`, {
+        .post(`/videos/${videoID}/comments`, {
           name: "John Doe",
           comment: event.target.comment.value,
+          id: uuidv4().toString(),
+          likes: 0,
+          timestamp: 1542262984046,
         })
-        .then(() => {
-          this.getVideoFromId(videoID);
+        .then((res) => {
+          console.log(res, videoID);
         })
         .catch((error) => {
           console.log(error);
         });
 
+      this.getVideoFromId(videoID);
       event.target.comment.value = "";
     }
   };

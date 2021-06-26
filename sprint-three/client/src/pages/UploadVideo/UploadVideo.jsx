@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+
 import Modal from "../../components/UI/Modal";
 import "./UploadVideo.scss";
 import bikeImage from "../../assets/images/Upload-video-preview.jpg";
@@ -8,21 +11,45 @@ class UploadVideo extends Component {
     showModal: false,
   };
 
-  showModal = (event) => {
-    event.preventDefault();
-    this.setState({
-      showModal: true,
-    });
+  postVideo = (event) => {
+    axios
+      .post(`/videos`, {
+        id: uuidv4().toString(),
+        title: event.target.title.value,
+        channel: event.target.channel.value,
+        // image: "https://i.imgur.com/8U6MQEk.jpeg",
+        description: event.target.description.value,
+        views: "500",
+        likes: "110",
+        duration: "5:93",
+        video: "https://project-2-api.herokuapp.com/stream",
+        timestamp: 1545162149000,
+        comments: [],
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          this.setState({
+            showModal: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  onPublish = (event) => {
-    event.preventDefault();
+  finishUpload = () => {
     this.props.history.push("/");
   };
 
-  goBack = (event) => {
-    event.preventDefault();
+  goBack = () => {
     this.props.history.goBack();
+  };
+
+  uploadNewVideo = (event) => {
+    event.preventDefault();
+
+    this.postVideo(event);
   };
 
   render() {
@@ -31,7 +58,7 @@ class UploadVideo extends Component {
         {this.state.showModal && (
           <Modal
             title="Your video is submitted successfully!"
-            action={this.onPublish}
+            action={this.finishUpload}
           />
         )}
         <section className="upload">
@@ -45,7 +72,11 @@ class UploadVideo extends Component {
                 alt="blue bike"
               />
             </div>
-            <form className="upload__form">
+            <form
+              onSubmit={this.uploadNewVideo}
+              id="uploadForm"
+              className="upload__form"
+            >
               <label className="upload__form-label" htmlFor="title">
                 TITLE YOUR VIDEO
               </label>
@@ -54,6 +85,15 @@ class UploadVideo extends Component {
                 type="text"
                 name="title"
                 placeholder="Add a title to your video"
+              />
+              <label className="upload__form-label" htmlFor="title">
+                CHANNEL
+              </label>
+              <input
+                className="upload__form-input"
+                type="text"
+                name="channel"
+                placeholder="Add a channel of your video"
               />
               <label className="upload__form-label" htmlFor="description">
                 ADD A VIDEO DESCRIPTION
@@ -68,15 +108,13 @@ class UploadVideo extends Component {
           </div>
           <div className="upload__buttons">
             <button
-              onClick={(event) => this.showModal(event)}
+              type="submit"
+              form="uploadForm"
               className="upload__buttons-btn"
             >
               PUBLISH
             </button>
-            <button
-              onClick={(event) => this.goBack(event)}
-              className="upload__buttons-btn"
-            >
+            <button onClick={this.goBack} className="upload__buttons-btn">
               CANCEL
             </button>
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommentsForm.scss";
 
-class Form extends React.Component {
+class CommentsForm extends React.Component {
   
   render() {
     const { numberOfComments } = this.props;
@@ -35,4 +35,4 @@ class Form extends React.Component {
     );
   }
 }
-export default Form;
+export default CommentsForm;

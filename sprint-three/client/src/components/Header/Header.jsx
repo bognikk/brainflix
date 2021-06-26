@@ -3,7 +3,6 @@ import logoImg from "../../assets/images/Logo-brainflix.svg";
 import uploadIcon from "../../assets/images/Icon-upload.svg";
 import "./Header.scss";
 
-
 const Header = () => {
   return (
     <header className="header">

@@ -1,7 +1,7 @@
 import React from "react";
 
-import Form from "./CommentsForm/CommentsForm";
-import Posts from "./CommentsPosts/CommentsPosts";
+import CommentsForm from "./CommentsForm/CommentsForm";
+import CommentsPosts from "./CommentsPosts/CommentsPosts";
 import "./Comments.scss";
 
 class Comments extends React.Component {
@@ -10,12 +10,12 @@ class Comments extends React.Component {
 
     return (
       <>
-        <Form
+        <CommentsForm
           numberOfComments={selectedVideo.comments.length}
           videoID={selectedVideo.id}
           sendComment={sendComment}
         />
-        <Posts
+        <CommentsPosts
           posts={selectedVideo.comments.reverse()}
           deleteComment={deleteComment}
         />
