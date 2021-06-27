@@ -1,7 +1,12 @@
 import React from "react";
 import "./CommentsPosts.scss";
+import Loading from "../../UI/Loading";
 
-const CommentsPosts = ({posts, deleteComment}) => {
+const CommentsPosts = ({ posts, deleteComment }) => {
+  if (posts.length === 0) {
+    return <Loading text="Be the first to post a comment on this video!" />;
+  }
+
   return (
     <>
       <div className="posts-container">

@@ -9,13 +9,6 @@ router.get("/videos/:videoID/comments", (req, res) => {
   res.status(200).json(chosenVideoComments.comments);
 });
 
-// router.get("/videos/:videoId/comments", (req, res) => {
-//   const { videoId } = req.params;
-//   // const { name, comment } = req.body
-//   let found = videos.find((item) => item.id === videoId);
-//   res.json(found.comments);
-// });
-
 router.post("/videos/:videoId/comments", (req, res) => {
   const { name, comment, id, likes, timestamp } = req.body;
   const { videoId } = req.params;
@@ -38,15 +31,22 @@ router.post("/videos/:videoId/comments", (req, res) => {
   res.status(201).json(newComment);
 });
 
-// router.delete("/videos/:videoId/comments/:commentId", (req, res) => {
-//   const { videoId, commentId } = req.params;
-//   const selectedVideo = allVideos.find((video) => video.id === videoId);
-//   const selectedComment = selectedVideo.comments.map((comment, index) => {
-//     if (comment.id === commentId) {
-//       selectedVideo.comments.splice(index, 1);
-//     }
-//   });
-//   res.json(selectedVideo.comments);
-// });
+router.delete("/videos/:videoId/comments/:commentId", (req, res) => {
+  const { videoId, commentId } = req.params;
+  const chosenVideo = allVideos.find((video) => video.id === videoId);
+
+  const filtered = chosenVideo.comments.filter(
+    (comment) => comment.id !== commentId
+  );
+
+  chosenVideo.comments = filtered;
+
+  fs.writeFileSync("data/videos.json", JSON.stringify(allVideos), {
+    encoding: "utf8",
+    flag: "w",
+  });
+
+  res.status(200).json(commentId);
+});
 
 module.exports = router;

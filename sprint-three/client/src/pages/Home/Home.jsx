@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-
-import { BASE_URL, API_KEY } from "../../utils/utils";
+import Loading from "../../components/UI/Loading";
 
 import Hero from "../../components/Hero/Hero";
 import Main from "../../components/UI/Main";
@@ -46,12 +45,6 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
       });
-
-    window.scrollTo({
-      top: 80,
-      left: 0,
-      behavior: "smooth",
-    });
   }
 
   componentDidMount() {
@@ -86,13 +79,17 @@ class Home extends Component {
           timestamp: new Date().getTime(),
         })
         .then((res) => {
-          console.log(res, videoID);
+          console.log(res.status, videoID);
+          if (res.status === 201) {
+            setTimeout(() => {
+              this.getVideoFromId(videoID);
+            }, 500);
+          }
         })
         .catch((error) => {
           console.log(error);
         });
 
-      this.getVideoFromId(videoID);
       event.target.comment.value = "";
     }
   };
@@ -101,9 +98,13 @@ class Home extends Component {
     const videoID = this.state.selectedVideo.id;
 
     axios
-      .delete(`${BASE_URL}/videos/${videoID}/comments/${postID}${API_KEY}`)
-      .then(() => {
-        this.getVideoFromId(videoID);
+      .delete(`/videos/${videoID}/comments/${postID}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setTimeout(() => {
+            this.getVideoFromId(videoID);
+          }, 500);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -112,7 +113,7 @@ class Home extends Component {
 
   render() {
     if (!this.state.selectedVideo) {
-      return <div>Loading...</div>;
+      return <Loading text="Loading..." />;
     }
     return (
       <>
