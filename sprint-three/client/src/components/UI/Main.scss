@@ -3,8 +3,8 @@
 @use '../../partials/mixins' as *;
 
 .main {
- @include desktop {
-  padding-left: $padding * 8;
-  display: flex;
- }
+  @include desktop {
+    padding-left: $padding * 8;
+    display: flex;
+  }
 }

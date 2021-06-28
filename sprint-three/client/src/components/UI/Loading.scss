@@ -2,7 +2,7 @@
 @use '../../partials/typography' as *;
 @use '../../partials/mixins' as *;
 
-.emptyComment {
+.loading {
   padding-top: $padding;
   border-bottom: 2.5px solid $silver-light;
   border-top: 2.5px solid $silver-light;

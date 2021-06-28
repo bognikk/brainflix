@@ -32,7 +32,7 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   getVideoFromId = (videoID) => {
     axios
@@ -45,7 +45,7 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   componentDidMount() {
     this.getVideos();
@@ -79,7 +79,6 @@ class Home extends Component {
           timestamp: new Date().getTime(),
         })
         .then((res) => {
-          console.log(res.status, videoID);
           if (res.status === 201) {
             setTimeout(() => {
               this.getVideoFromId(videoID);
@@ -101,6 +100,7 @@ class Home extends Component {
       .delete(`/videos/${videoID}/comments/${postID}`)
       .then((res) => {
         if (res.status === 200) {
+          // this setTimeout, and every other, has to be replaced with async await or Proxy when i learn how to :)
           setTimeout(() => {
             this.getVideoFromId(videoID);
           }, 500);
@@ -111,7 +111,7 @@ class Home extends Component {
       });
   };
 
-  likeVideo() {
+  likeVideo = () => {
     const videoID = this.state.selectedVideo.id;
 
     axios
@@ -120,13 +120,12 @@ class Home extends Component {
         if (res.status === 204) {
           setTimeout(() => {
             this.getVideoFromId(videoID);
-          }, 200);
+          }, 500);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-    console.log("liked");
   };
 
   render() {

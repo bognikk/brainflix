@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import viewsIcon from "../../assets/images/Icon-views.svg";
 import likesIcon from "../../assets/images/Icon-likes.svg";
 import "./Description.scss";

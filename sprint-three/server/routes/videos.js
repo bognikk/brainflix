@@ -65,7 +65,7 @@ router.put("/videos/:videoId/likes", (req, res) => {
 
   const chosenVideo = allVideos.find((video) => video.id === videoId);
   const addLike = chosenVideo.likes + 1;
-  chosenVideo.likes = addLike
+  chosenVideo.likes = addLike;
 
   fs.writeFileSync("data/videos.json", JSON.stringify(allVideos), {
     encoding: "utf8",

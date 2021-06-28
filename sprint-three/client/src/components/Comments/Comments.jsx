@@ -2,7 +2,6 @@ import React from "react";
 
 import CommentsForm from "./CommentsForm/CommentsForm";
 import CommentsPosts from "./CommentsPosts/CommentsPosts";
-import "./Comments.scss";
 
 class Comments extends React.Component {
   render() {
