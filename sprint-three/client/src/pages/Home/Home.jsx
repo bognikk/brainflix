@@ -16,7 +16,7 @@ class Home extends Component {
     videos: [],
   };
 
-  getVideos() {
+  getVideos = () => {
     axios
       .get(`/videos`)
       .then((resp) => {
@@ -34,7 +34,7 @@ class Home extends Component {
       });
   }
 
-  getVideoFromId(videoID) {
+  getVideoFromId = (videoID) => {
     axios
       .get(`/videos/${videoID}`)
       .then((resp) => {
@@ -111,16 +111,40 @@ class Home extends Component {
       });
   };
 
+  likeVideo() {
+    const videoID = this.state.selectedVideo.id;
+
+    axios
+      .put(`/videos/${videoID}/likes`)
+      .then((res) => {
+        if (res.status === 204) {
+          setTimeout(() => {
+            this.getVideoFromId(videoID);
+          }, 200);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log("liked");
+  };
+
   render() {
     if (!this.state.selectedVideo) {
       return <Loading text="Loading..." />;
     }
     return (
       <>
-        <Hero selectedVideoImg={this.state.selectedVideo.image} />
+        <Hero
+          selectedVideoImg={this.state.selectedVideo.image}
+          // selectedVideoVideo={this.state.selectedVideo.video}
+        />
         <Main>
           <SelectedVideo>
-            <Description selectedVideo={this.state.selectedVideo} />
+            <Description
+              selectedVideo={this.state.selectedVideo}
+              likeVideo={this.likeVideo}
+            />
             <Comments
               selectedVideo={this.state.selectedVideo}
               sendComment={this.sendComment}

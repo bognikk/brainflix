@@ -1,10 +1,9 @@
+import React, { Component } from "react";
 import viewsIcon from "../../assets/images/Icon-views.svg";
 import likesIcon from "../../assets/images/Icon-likes.svg";
 import "./Description.scss";
 
-const Description = (props) => {
-  const { selectedVideo } = props;
-
+const Description = ({ selectedVideo, likeVideo }) => {
   return (
     <section className="desc">
       <h1 className="desc__main-title">{selectedVideo.title}</h1>
@@ -21,8 +20,17 @@ const Description = (props) => {
             <p className="desc__views">{selectedVideo.views}</p>
           </div>
           <div className="desc__wrapper">
-            <img className="desc__icon" src={likesIcon} alt="likesIcon" />
-            <p className="desc__likes">{selectedVideo.likes}</p>
+            <img
+              onClick={() => likeVideo()}
+              className="desc__icon desc__icon--like"
+              src={likesIcon}
+              alt="likesIcon"
+            />
+            <p className="desc__likes">
+              {selectedVideo.likes
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </p>
           </div>
         </div>
       </div>
@@ -32,4 +40,5 @@ const Description = (props) => {
     </section>
   );
 };
+
 export default Description;

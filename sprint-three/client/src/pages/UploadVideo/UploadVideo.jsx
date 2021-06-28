@@ -21,9 +21,9 @@ class UploadVideo extends Component {
         image: "/images/upload.jpg",
         description: event.target.description.value,
         views: "500",
-        likes: "110",
+        likes: 110,
         duration: "5:93",
-        video: "https://www.youtube.com/watch?v=8Lff5W4OygM",
+        video: "/images/video.mp4",
         timestamp: new Date().getTime(),
         comments: [],
       })

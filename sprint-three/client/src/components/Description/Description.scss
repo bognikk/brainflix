@@ -70,6 +70,14 @@
 
   &__icon {
     margin-right: $margin/2;
+
+    &--like {
+      &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+        color: red;
+      }
+    }
   }
 
   &__wrapper {
